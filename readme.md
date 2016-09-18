@@ -23,7 +23,7 @@ There's a lot of cleaning up to do, but here's what I have right now. There was 
 
 #### Cloud services
 - [data.sparkfun.com](https://data.sparkfun.com)
-- Google Charts(https://developers.google.com/chart/interactive/docs/)
+- [Google Charts](https://developers.google.com/chart/interactive/docs/)
 
 ### Assembly
 
