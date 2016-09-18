@@ -27,7 +27,7 @@ There's a lot of cleaning up to do, but here's what I have right now. There was 
 
 ### Assembly
 
-Spare me some explanations, just plug everything in like they do in [this tutorial](https://plot.ly/arduino/dht22-temperature-tutorial/)
+Spare me some explanations, just plug everything in like they do in [this tutorial](https://plot.ly/arduino/dht22-temperature-tutorial/).
 
 ### Storing our data
 
