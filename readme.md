@@ -1,5 +1,5 @@
 # Plotting DHT sensor data using data.sparkfun.com and Google Charts.
-
+![screenshot](https://raw.githubusercontent.com/TheMonkeyz/climatemonitor/master/screenshot01.png)
 ## Inspiration
 
 I struggled for a while to log my data to plot.ly by following [this tutorial](https://plot.ly/arduino/dht22-temperature-tutorial/) and debugging the hell out of it. I finally succeeded today but now they want me to pay 20$/month to keep using it. After searching for another solution, I found this [interesting tutorial](http://www.esp8266.com/viewtopic.php?f=11&t=3569). I'm using an ethernet shield so I didn't go at it in the same exact way. And since I already had something that worked, I hacked on from what I had.
