@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Home Climate Monitoring</title>
+    <!-- EXTERNAL LIBS-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://www.google.com/jsapi"></script>
+    
+    <!-- EXAMPLE SCRIPT -->
+    <script>
+      // Find the right method, call on correct element
+      function launchIntoFullscreen(element) {
+        if(element.requestFullscreen) {
+          element.requestFullscreen();
+        } else if(element.mozRequestFullScreen) {
+          element.mozRequestFullScreen();
+        } else if(element.webkitRequestFullscreen) {
+          element.webkitRequestFullscreen();
+        } else if(element.msRequestFullscreen) {
+          element.msRequestFullscreen();
+        }
+      }
+
+      // Whack fullscreen
+      function exitFullscreen() {
+        if(document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if(document.mozCancelFullScreen) {
+          document.mozCancelFullScreen();
+        } else if(document.webkitExitFullscreen) {
+          document.webkitExitFullscreen();
+        }
+      }
+      
+      
+      // onload callback
+      function drawChart() {
+
+        var cloud_url = 'https://data.sparkfun.com/output/';
+        // Public Key from https://data.sparkfun.com
+        var public_key = 'q5njo01A2GImgabArVp3';
+
+        // JSONP request
+        var jsonData = $.ajax({
+          url:  cloud_url + public_key + '.json',
+          data: {page: 1},
+          dataType: 'jsonp',
+        }).done(function (results) {
+          var combinedResults = results
+          console.log(results);
+          console.log(combinedResults);
+            var jsonData = $.ajax({
+            url:  cloud_url + public_key + '.json',
+            data: {page: 2},
+            dataType: 'jsonp',
+          }).done(function (results) {
+            combinedResults = combinedResults.concat(results);
+            console.log(results);
+            console.log(combinedResults);
+            var jsonData = $.ajax({
+              url:  cloud_url + public_key + '.json',
+              data: {page: 3},
+              dataType: 'jsonp',
+            }).done(function (results) {
+              combinedResults = combinedResults.concat(results);
+              console.log(results);
+              console.log(combinedResults);
+              var latest = combinedResults[0];
+              var tempGauge = new google.visualization.Gauge($('#tempGauge').get(0));
+              var tempGaugeData = google.visualization.arrayToDataTable([
+                ['Label', 'Value'],
+                ['Temp\u00E9rature', 0],
+              ]);
+              var tempGaugeOptions = {
+                width: 300, height: 300,
+                redFrom: 30, redTo: 50,
+                greenFrom:20, greenTo: 30,
+                yellowFrom:0, yellowTo: 20,
+                yellowColor: "#00ccff",
+                minorTicks: 10,
+                majorTicks: ['0', '10', '20', '30', '40', '50'],
+                max: 50
+              };
+    
+              // For animation purpose only
+              //tempGauge.draw(tempGaugeData,tempGaugeOptions);
+    
+              // Show real data
+              tempGaugeData.setValue(0,1,parseFloat(latest.temp));
+                  
+              tempGauge.draw(tempGaugeData,tempGaugeOptions);
+    
+              var humidityGauge = new google.visualization.Gauge($('#humidityGauge').get(0));
+              var humidityGaugeData = google.visualization.arrayToDataTable([
+                ['Label', 'Value'],
+                ['Humidit\u00E9', 0],
+              ]);
+              var humidityGaugeOptions = {
+                width: 300, height: 300,
+                redFrom: 45, redTo: 100,
+                greenFrom:30, greenTo: 45,
+                yellowFrom:0, yellowTo: 30,
+                minorTicks: 10,
+                majorTicks: ['0', '20', '40', '60', '80', '100'],
+                max: 100
+              };
+    
+              // For animation purpose only
+              //humidityGauge.draw(humidityGaugeData,humidityGaugeOptions);
+    
+              // Show real data
+              humidityGaugeData.setValue(0,1,parseFloat(latest.humidity));
+                  
+              humidityGauge.draw(humidityGaugeData,humidityGaugeOptions);
+    
+              var data = new google.visualization.DataTable();
+    
+              data.addColumn('datetime', 'Time');
+              data.addColumn('number', 'Temp\u00E9rature');
+              data.addColumn('number', 'Humidit\u00E9');
+        
+              $.each(combinedResults, function (i, row) {
+                data.addRow([
+                  (new Date(row.timestamp)),
+                  parseFloat(row.temp),
+                  parseFloat(row.humidity),
+                ]);
+              });
+    
+              var chart = new google.visualization.LineChart($('#temperature').get(0));
+              chart.draw(data, {
+                title: 'Historical Data', 
+                height: 285,
+                theme: 'maximized',
+                explorer: {},
+                vAxis:{minValue: 0,maxValue: 100}
+              });
+            });
+          });
+        
+        });
+      setTimeout(function () {
+                drawChart();
+            }, 60000);
+      }
+
+      // load chart lib
+      google.load('visualization', '1', {
+        packages: ['corechart','gauge']
+      });
+
+      // call drawChart once google charts is loaded
+      google.setOnLoadCallback(drawChart);
+    </script>
+
+  </head>
+  <body style="text-align:center">
+    <div id="tempGauge" style="display:inline-block;width:300px;margin-left:auto;margin-right:auto;"></div>
+    <div id="humidityGauge" style="display:inline-block;width:300px;margin-left:auto;margin-right:auto;"></div>
+    <div id="temperature" style="width: 95%;display:inline-block"></div>
+    <div id="fullscreen-button" style="display:block"><button onclick="launchIntoFullscreen(document.documentElement)">Full-screen</button></div>
+    <div id="fullscreen-button" style="display:block"><button onclick="exitFullscreen()">Exit Full-screen</button></div>
+
+  </body>
+</html>
