@@ -10,17 +10,17 @@ There's a lot of cleaning up to do, but here's what I have right now. There was 
 
 ### You will need
 - Hardware (Links are provided for convenience, that's exactly what I have ordered.)
--.. [Arduino Compatible Uno R3](https://www.fasttech.com/p/1001700)
--.. [Power supply](https://www.fasttech.com/p/1192600) (The arduino description said 7-12V, I ordered a 5V power supply by mistake yet it works perfectly. It can also run straight from USB.)
--.. [Ethernet Shield](https://www.fasttech.com/p/1000701) (Wifi module would work but require some minor mofidications to the sketch)
--.. [DHT22 AM2302 Digital Temperature Humidity Sensor Module](https://www.fasttech.com/p/4009600)
+..- [Arduino Compatible Uno R3](https://www.fasttech.com/p/1001700)
+..- [Power supply](https://www.fasttech.com/p/1192600) (The arduino description said 7-12V, I ordered a 5V power supply by mistake yet it works perfectly. It can also run straight from USB.)
+..- [Ethernet Shield](https://www.fasttech.com/p/1000701) (Wifi module would work but require some minor mofidications to the sketch)
+..- [DHT22 AM2302 Digital Temperature Humidity Sensor Module](https://www.fasttech.com/p/4009600)
 - Software
--.. [Latest Arduino software](https://www.arduino.cc/en/Main/Software) (I used 1.6.11)
--.. [The DHT sensor library](https://github.com/adafruit/DHT-sensor-library)
--.. The index.html from this repository
+..- [Latest Arduino software](https://www.arduino.cc/en/Main/Software) (I used 1.6.11)
+..- [The DHT sensor library](https://github.com/adafruit/DHT-sensor-library)
+..- The index.html from this repository
 - Cloud services
--.. [data.sparkfun.com](https://data.sparkfun.com)
--.. Google Charts(https://developers.google.com/chart/interactive/docs/)
+..- [data.sparkfun.com](https://data.sparkfun.com)
+..- Google Charts(https://developers.google.com/chart/interactive/docs/)
 
 ### Assembly
 
