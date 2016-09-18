@@ -1,4 +1,4 @@
-# Plotting DHT sensor data using data.sparkfun.com and Google Charts.
+# Plotting Arduino DHT sensor data using data.sparkfun.com and Google Charts.
 ![screenshot](https://raw.githubusercontent.com/TheMonkeyz/climatemonitor/master/screenshot01.png)
 ## Inspiration
 
